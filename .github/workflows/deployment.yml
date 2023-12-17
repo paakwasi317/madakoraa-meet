@@ -50,7 +50,7 @@ jobs:
           docker pull ${{ secrets.DOCKER_REPO }}:latest
 
           if [ "$(docker ps -aq -f name=madakoraa_meet)" ]; then
-            docker stop madakoraa_meet
+            docker stop -f madakoraa_meet
             docker rm madakoraa_meet
           fi
 
