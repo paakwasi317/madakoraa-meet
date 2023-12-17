@@ -12,10 +12,12 @@ RUN apt-get update && \
     python3-pip && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy package.json and install dependencies
+# Copy package.json and package-lock.json
 COPY package.json .
-RUN npm install && \
-    npm cache clean --force && \
+COPY package-lock.json .
+
+# Install dependencies
+RUN npm ci --only=production && \
     apt-get -y purge --auto-remove build-essential python3-pip
 
 # Copy app and public directories
