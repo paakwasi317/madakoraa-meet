@@ -2,17 +2,19 @@ name: Deploy Madakoraa meet to Production
 
 on:
   push:
-    branches: 
+    branches:
       - main
 
 jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Fetch the complete Git history
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
@@ -21,11 +23,22 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-            # Pull the latest code from GitHub
+            # Set the working directory to the root of the repository
             cd $GITHUB_WORKSPACE
-            
+
+            # Install Node.js and npm
+            sudo apt-get update
+            sudo apt-get install -y nodejs npm
+
+            # Verify the installation
+            node --version
+            npm --version
+
+            # Pull the latest code from GitHub
             git pull origin main
 
-            # Run your application directly (adjust the command as needed)
-            npm install  # Add this line if your project has Node.js dependencies
-            nohup npm start    # Replace this with the actual command to start your application
+            # Install any dependencies (if needed)
+            npm install
+            
+            # Run your application in the background
+            nohup npm start
