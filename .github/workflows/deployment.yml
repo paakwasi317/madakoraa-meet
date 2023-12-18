@@ -22,6 +22,8 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             # Pull the latest code from GitHub
+            cd $GITHUB_WORKSPACE
+            
             git pull origin main
 
             # Run your application directly (adjust the command as needed)
