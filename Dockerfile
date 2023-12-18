@@ -1,6 +1,5 @@
 # Build Stage
-FROM node:18-slim AS builder
-
+FROM node:18-slim
 WORKDIR /src
 
 # https://mediasoup.org/documentation/v3/mediasoup/installation/
@@ -15,28 +14,20 @@ RUN apt-get update \
 COPY package.json .
 
 # Install dependencies
-RUN npm install --only=production
+RUN npm install
 
 # Cleanup unnecessary dependencies and packages
-RUN apt-get -y purge --auto-remove build-essential python3-pip \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /root/.npm /root/.node-gyp
 
-# Runtime Stage
-FROM node:18-slim
-
-WORKDIR /src
-
-# Copy only necessary files from the build stage
-COPY --from=builder /src .
-
-# Copy app and public directories
 COPY app app
 COPY public public
 
 # Copy the Nginx configuration file
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY entrypoint.sh /entrypoint.sh
+
+# Make file executable
+RUN chmod +x /entrypoint.sh
+
 
 # Expose port 80
 EXPOSE 80
