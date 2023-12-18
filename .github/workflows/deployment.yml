@@ -26,19 +26,4 @@ jobs:
             # Set the working directory to the root of the repository
             cd $GITHUB_WORKSPACE
 
-            # Install Node.js and npm
-            sudo apt-get update
-            sudo apt-get install -y nodejs npm
-
-            # Verify the installation
-            node --version
-            npm --version
-
-            # Pull the latest code from GitHub
             git pull origin main
-
-            # Install any dependencies (if needed)
-            npm install
-            
-            # Run your application in the background
-            nohup npm start
