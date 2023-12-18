@@ -7,54 +7,23 @@ on:
 
 jobs:
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
-        - name: Build image 
-          run: docker build -t madakoraa_meet:$GITHUB_SHA .
-
-        - name: Log into Docker Hub
-          uses: docker/login-action@v3 
-          with:
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}
-    
-        - name: Push image to Docker Hub
-          run: |
-            docker tag madakoraa_meet:$GITHUB_SHA ${{ secrets.DOCKER_REPO }}:$GITHUB_SHA
-            docker push ${{ secrets.DOCKER_REPO }}:$GITHUB_SHA
-    
-        - name: Push image to Docker Hub (latest tag)    
-          if: github.ref == 'refs/heads/main'
-          run: |
-             docker tag madakoraa_meet:$GITHUB_SHA ${{ secrets.DOCKER_REPO }}:latest 
-             docker push ${{ secrets.DOCKER_REPO }}:latest
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
-
+    
     steps:
-        
-    - name: Deploy to EC2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USERNAME }}
-        key: ${{ secrets.EC2_PRIVATE_KEY }}
-        script: |
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            # Pull the latest code from GitHub
+            git pull origin main
 
-          docker pull ${{ secrets.DOCKER_REPO }}:latest
-
-          if [ "$(docker ps -aq -f name=madakoraa_meet)" ]; then
-            docker stop madakoraa_meet
-            docker rm madakoraa_meet
-          fi
-
-          docker run -d --name madakoraa_meet ${{ secrets.DOCKER_REPO }}:latest
-
-          docker image rm $(docker image ls -q --filter reference=${{ secrets.DOCKER_REPO }} --filter dangling=true)
-       
+            # Run your application directly (adjust the command as needed)
+            npm install  # Add this line if your project has Node.js dependencies
+            nohup npm start    # Replace this with the actual command to start your application
