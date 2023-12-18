@@ -24,4 +24,11 @@ RUN npm ci --only=production && \
 COPY app app
 COPY public public
 
-CMD npm start
+# Copy the Nginx configuration file
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx
+CMD ["/entrypoint.sh"]
