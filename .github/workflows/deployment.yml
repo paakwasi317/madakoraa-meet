@@ -26,4 +26,4 @@ jobs:
             # Set the working directory to the root of the repository
             cd $GITHUB_WORKSPACE
 
-            git pull origin main
+            git clone https://github.com/paakwasi317/madakoraa-meet.git
