@@ -15,8 +15,7 @@ RUN apt-get update \
 COPY package.json .
 
 # Install dependencies
-RUN npm install && \
-    npm cache clean --force
+RUN npm install --only=production
 
 # Cleanup unnecessary dependencies and packages
 RUN apt-get -y purge --auto-remove build-essential python3-pip \
@@ -44,4 +43,3 @@ EXPOSE 80
 
 # Start Nginx
 CMD ["/entrypoint.sh"]
-
