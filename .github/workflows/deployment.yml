@@ -16,14 +16,14 @@ jobs:
         with:
           fetch-depth: 0  # Fetch the complete Git history
 
-      - name: Deploy to EC2
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
-          key: ${{ secrets.EC2_PRIVATE_KEY }}
-          script: |
-            # Set the working directory to the root of the repository
-            cd $GITHUB_WORKSPACE
+      # - name: Deploy to EC2
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.EC2_HOST }}
+      #     username: ${{ secrets.EC2_USERNAME }}
+      #     key: ${{ secrets.EC2_PRIVATE_KEY }}
+      #     script: |
+      #       # Set the working directory to the root of the repository
+      #       cd $GITHUB_WORKSPACE
 
-            git clone https://github.com/paakwasi317/madakoraa-meet.git
+      #       git clone https://github.com/paakwasi317/madakoraa-meet.git
