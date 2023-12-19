@@ -13,17 +13,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
         with:
-          fetch-depth: 0  # Fetch the complete Git history
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            # Set the working directory to the root of the repository
+            cd madakoraa_meet
 
-      # - name: Deploy to EC2
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.EC2_HOST }}
-      #     username: ${{ secrets.EC2_USERNAME }}
-      #     key: ${{ secrets.EC2_PRIVATE_KEY }}
-      #     script: |
-      #       # Set the working directory to the root of the repository
-      #       cd $GITHUB_WORKSPACE
+            git pull origin main
 
-      #       git clone https://github.com/paakwasi317/madakoraa-meet.git
+            pm2 reload ecosystem.config.js
+
+            
