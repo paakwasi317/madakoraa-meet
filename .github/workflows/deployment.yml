@@ -22,7 +22,7 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             # Set the working directory to the root of the repository
-            cd madakoraa_meet
+            cd madakoraa-meet
 
             git pull origin main
 
