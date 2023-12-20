@@ -18,6 +18,10 @@ h1 {
     font-size: 2em;
     margin: 0.67em 0;
 }
+.header-logo-image{
+    width: 28px !important;
+    height: 28px !important;
+}
 figcaption,
 figure,
 main {
