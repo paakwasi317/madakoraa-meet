@@ -1,8 +1,8 @@
 swagger: '2.0'
 
 info:
-    title: MiroTalk SFU API
-    description: API description for external applications that integrates with MiroTalk SFU.
+    title: Madakoraa API
+    description: API description for external applications that integrates with Madakoraa.
     version: 1.0.0
 
 basePath: /api/v1

@@ -1,6 +1,6 @@
-# MiroTalk SFU - Self Hosting
+# Madakoraa - Self Hosting
 
-### How can I self-host MiroTalk SFU on my own server?
+### How can I self-host Madakoraa on my own server?
 
 [https://docs.mirotalk.com/mirotalk-sfu/self-hosting/](https://docs.mirotalk.com/mirotalk-sfu/self-hosting/)
 

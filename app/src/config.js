@@ -63,7 +63,7 @@ module.exports = {
                 Additional layers can be added to specify valid presenters and co-presenters by setting designated usernames.
             */
             'Miroslav Pejic',
-            'MiroTalk SFU',
+            'Madakoraa',
         ],
         join_first: true, // Set to true for traditional behavior, false to prioritize presenters
     },
