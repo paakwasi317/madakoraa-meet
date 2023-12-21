@@ -154,8 +154,8 @@ module.exports = {
             Umami: https://github.com/umami-software/umami
             We use Umami to track aggregated usage statistics in order to improve our service. 
         */
-        enabled: true,
-        src: 'https://stats.mirotalk.com/script.js',
+        enabled: false,
+        src: '',
         id: '41d26670-f275-45bb-af82-3ce91fe57756',
     },
     mediasoup: {
