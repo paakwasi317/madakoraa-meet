@@ -128,7 +128,7 @@ if (sentryEnabled) {
 const defaultStats = {
     enabled: false,
     src: '',
-    id: '41d26670-f275-45bb-af82-3ce91fe57756',
+    id: '',
 };
 
 // OpenAI/ChatGPT
