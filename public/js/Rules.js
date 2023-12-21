@@ -22,7 +22,7 @@ const BUTTONS = {
         whiteboardButton: true,
         emojiRoomButton: true,
         settingsButton: true,
-        aboutButton: true, // Please keep me always visible, thank you!
+        aboutButton: false, // Please keep me always visible, thank you!
         exitButton: true,
     },
     settings: {
