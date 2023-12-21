@@ -126,8 +126,8 @@ if (sentryEnabled) {
 
 // Stats
 const defaultStats = {
-    enabled: true,
-    src: 'https://stats.mirotalk.com/script.js',
+    enabled: false,
+    src: '',
     id: '41d26670-f275-45bb-af82-3ce91fe57756',
 };
 
