@@ -18,8 +18,8 @@ const BUTTONS = {
         swapCameraButton: true,
         chatButton: true,
         raiseHandButton: true,
-        transcriptionButton: false,
-        whiteboardButton: false,
+        transcriptionButton: true,
+        whiteboardButton: true,
         emojiRoomButton: true,
         settingsButton: true,
         aboutButton: false, // Please keep me always visible, thank you!
